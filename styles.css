@@ -29,6 +29,20 @@ div h1 {
     margin-bottom: 1em;
 }
 
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input,
+select,
+button[type="date"] {
+    padding: 10px;
+    font-size: 16px;
+    background: #d1c0ec;
+}
+
 input[type="text"] {
     padding: 0.8rem;
     border-radius: 8px;
@@ -85,4 +99,21 @@ li {
 .delete-btn {
     background: #d1c0ec;
     color: white;
+}
+
+.date {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.high {
+    background: #e74c3c;
+}
+
+.medium {
+    background: #f39c12;
+}
+
+.low {
+    background: #27ae60;
 }
