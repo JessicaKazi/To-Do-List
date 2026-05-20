@@ -1,19 +1,28 @@
 // Local Storage for the users process on the project
 const locStore = JSON.parse(localStorage.getItem("Storage"));
 
-function addTask() {
+ function addTask() {
       const taskInput = document.getElementById("taskInput");
-      const taskText = taskInput.value.trim();
+      const taskDate = document.getElementById("taskDate");
+      const priority = document.getElementById("priority");
 
-      if (taskText === "") {
-        alert("Please enter a task");
+      const text = taskInput.value.trim();
+      const date = taskDate.value;
+      const level = priority.value;
+
+      if (text === "" || date === "") {
+        alert("Please enter task and date");
         return;
       }
 
       const li = document.createElement("li");
+      li.classList.add(level);
 
       li.innerHTML = `
-        <span class="task-text">${taskText}</span>
+        <div class="task-info">
+          <strong>${text}</strong>
+          <span class="date">Due: ${date}</span>
+        </div>
 
         <div class="actions">
           <button class="edit-btn" onclick="editTask(this)">Edit</button>
@@ -24,6 +33,7 @@ function addTask() {
       document.getElementById("taskList").appendChild(li);
 
       taskInput.value = "";
+      taskDate.value = "";
     }
 
     function editTask(button) {
