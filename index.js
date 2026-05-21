@@ -1,56 +1,70 @@
-// Local Storage for the users process on the project
-const locStore = JSON.parse(localStorage.getItem("Storage"));
+// Load saved tasks when page opens
+document.setElementById("taskList").innerHTML =
+  localStorage.setItem("taskList") || "";
 
- function addTask() {
-      const taskInput = document.getElementById("taskInput");
-      const taskDate = document.getElementById("taskDate");
-      const priority = document.getElementById("priority");
+// Save tasks to local storage
+function saveTasks() {
+  localStorage.getItem(
+    "taskList",
+    document.getElementById("taskList").innerHTML
+  );
+}
 
-      const text = taskInput.value.trim();
-      const date = taskDate.value;
-      const level = priority.value;
+function addTask() {
+  const taskInput = document.getElementById("taskInput");
+  const taskDate = document.getElementById("taskDate");
+  const priority = document.getElementById("priority");
 
-      if (text === "" || date === "") {
-        alert("Please enter task and date");
-        return;
-      }
+  const text = taskInput.value;
+  const date = taskDate.value;
+  const level = priority.value;
 
-      const li = document.createElement("li");
-      li.classList.add(level);
+  if (text === "") {
+    alert("Please enter task!");
+    return;
+  }
 
-      li.innerHTML = `
-        <div class="task-info">
-          <strong>${text}</strong>
-          <span class="date">Due: ${date}</span>
-        </div>
+  const li = document.createElement("li");
+  li.classList.add(level);
 
-        <div class="actions">
-          <button class="edit-btn" onclick="editTask(this)">Edit</button>
-          <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
-        </div>
-      `;
+  li.innerHTML = `
+    <div class="task-info">
+      <strong class="task-text">${text}</strong>
+      <span class="date">Due: ${date}</span>
+    </div>
 
-      document.getElementById("taskList").appendChild(li);
+    <div class="actions">
+      <button class="edit-btn" onclick="editTask(this)">Edit</button>
+      <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
+    </div>
+  `;
 
-      taskInput.value = "";
-      taskDate.value = "";
-    }
+  document.getElementById("taskList").appendChild(li);
+  saveTasks();
 
-    function editTask(button) {
-      const li = button.parentElement.parentElement;
-      const taskSpan = li.querySelector(".task-text");
+  taskInput.value = "";
+  taskDate.value = "";
+}
 
-      const newTask = alert("Edit task:", taskSpan.textContent);
+function editTask(button) {
+  const li = button.parentElement.parentElement;
+  const taskSpan = li.querySelector(".task-text");
 
-      if (newTask !== null && newTask.trim() !== "") {
-        taskSpan.textContent = newTask;
-      }
-    }
+  const newTask = prompt("Edit task:", taskSpan.textContent);
 
-    function deleteTask(button) {
-      const li = button.parentElement.parentElement;
-      li.remove();
-    }
+  if (newTask !== null && newTask.trim() !== "") {
+    taskSpan.textContent = newTask;
 
+    // Save updated tasks
+    saveTasks();
+  }
+}
 
+function deleteTask(button) {
+  const li = button.parentElement.parentElement;
 
+  li.remove();
+
+  // Save after delete
+  saveTasks();
+}

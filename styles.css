@@ -6,7 +6,10 @@
 
 body {
     font-family: "Share Tech", sans-serif;
-    background: #8d77a8;
+    background-image: url(download\ \(4\).jpg);
+    background-size: cover;
+    background-position: center;
+    background-color: #8d77a8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +18,11 @@ body {
 }
 
 .container {
-    background: #1b0e20;
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+    align-items: center;
+    background: #8d77a8;
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -26,21 +33,18 @@ body {
 }
 
 div h1 {
-    margin-bottom: 1em;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    margin-bottom: 0.3em;
 }
 
 input,
 select,
 button[type="date"] {
-    padding: 10px;
-    font-size: 16px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 8px;
     background: #d1c0ec;
+    border: none;
+    outline: none;
 }
 
 input[type="text"] {
@@ -54,7 +58,6 @@ input[type="text"] {
     background: #d1c0ec;
     color: #fff;
 }
-
 
 button {
     padding: 0.8rem 1rem;
@@ -92,12 +95,12 @@ li {
 }
 
 .edit-btn {
-    background: #d1c0ec;
+    background: #8d77a8;
     color: white;
 }
 
 .delete-btn {
-    background: #d1c0ec;
+    background: #8d77a8;
     color: white;
 }
 
@@ -107,13 +110,13 @@ li {
 }
 
 .high {
-    background: #e74c3c;
+    background: #a187ac;
 }
 
 .medium {
-    background: #f39c12;
+    background: #aa9ced;
 }
 
 .low {
-    background: #27ae60;
+    background: #dec0f1;
 }
