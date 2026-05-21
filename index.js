@@ -1,13 +1,10 @@
 // Load saved tasks when page opens
-document.setElementById("taskList").innerHTML =
-  localStorage.setItem("taskList") || "";
+document.getElementById("taskList").innerHTML =
+  localStorage.getItem("taskList") || "";
 
 // Save tasks to local storage
 function saveTasks() {
-  localStorage.getItem(
-    "taskList",
-    document.getElementById("taskList").innerHTML
-  );
+  localStorage.setItem("taskList", document.getElementById("taskList").innerHTML);
 }
 
 function addTask() {
